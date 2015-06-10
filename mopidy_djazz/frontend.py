@@ -33,7 +33,7 @@ class DjazzFrontend(pykka.ThreadingActor, core.CoreListener):
                     logger.info("Back from sleep")
                     djazzUrl = self._config['djazz_messaging_url']
                     try:
-                        urllib2.urlopen(djazzUrl + 'back-from-sleep').read()
+                        urllib2.urlopen(djazzUrl + 'mopidy-is-back-from-sleep').read()
                     except urllib2.HTTPError as e:
                         logger.warning("Error sending message 'back-from-sleep' to djazz (http %s)", e.code)
 
