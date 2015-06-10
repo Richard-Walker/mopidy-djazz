@@ -4,10 +4,10 @@ import logging
 import os
 
 # TODO: Remove entirely if you don't register GStreamer elements below
-import pygst
-pygst.require('0.10')
-import gst
-import gobject
+# import pygst
+# pygst.require('0.10')
+# import gst
+# import gobject
 
 from mopidy import config, ext
 
@@ -30,9 +30,8 @@ class Extension(ext.Extension):
 
     def get_config_schema(self):
         schema = super(Extension, self).get_config_schema()
-        # TODO: Comment in and edit, or remove entirely
-        #schema['username'] = config.String()
-        #schema['password'] = config.Secret()
+        schema['seconds_before_sleep'] = config.Integer()
+        schema['djazz_messaging_url'] = config.String()
         return schema
 
     def setup(self, registry):
@@ -40,20 +39,20 @@ class Extension(ext.Extension):
         # in a single extension.
 
         # TODO: Edit or remove entirely
-        from .frontend import FoobarFrontend
-        registry.add('frontend', FoobarFrontend)
+        from .frontend import DjazzFrontend
+        registry.add('frontend', DjazzFrontend)
 
         # TODO: Edit or remove entirely
-        from .backend import FoobarBackend
-        registry.add('backend', FoobarBackend)
+        # from .backend import FoobarBackend
+        # registry.add('backend', FoobarBackend)
 
         # TODO: Edit or remove entirely
-        from .mixer import FoobarMixer
-        gobject.type_register(FoobarMixer)
-        gst.element_register(FoobarMixer, 'foobarmixer', gst.RANK_MARGINAL)
+        # from .mixer import FoobarMixer
+        # gobject.type_register(FoobarMixer)
+        # gst.element_register(FoobarMixer, 'foobarmixer', gst.RANK_MARGINAL)
 
         # TODO: Edit or remove entirely
-        registry.add('http:static', {
-            'name': self.ext_name,
-            'path': os.path.join(os.path.dirname(__file__), 'static'),
-        })
+        # registry.add('http:static', {
+        #     'name': self.ext_name,
+        #     'path': os.path.join(os.path.dirname(__file__), 'static'),
+        # })
